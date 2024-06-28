@@ -1,11 +1,10 @@
 [build]
-  command = "npx remix vite:build"
-  functions = "netlify/functions"
-  publish = "public"
+command = "npm run build"
+publish = "build/client"
 
 [dev]
-  command = "npx remix watch"
-  port = 3000
+command = "npm run dev"
+framework = "vite"
 
 [[redirects]]
   from = "/*"
