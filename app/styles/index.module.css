@@ -4,6 +4,8 @@
   flex-direction: column;
   align-items: center;
   font-family: "Raleway", sans-serif;
+  text-align: center;
+
 }
 
 .machineGrid{
@@ -12,6 +14,7 @@
   flex-wrap: wrap;
   width: 80vw;
   justify-content: space-around;
+  gap: 2.5vh;
 }
 
 .modal{
@@ -19,4 +22,35 @@
   flex-direction: column;
   align-items: center;
   font-weight: 400;
+  align-self: center;
+  justify-self: center;
+  width:30vw;
+  min-width:250px;
+  min-height:250px;
+  max-height: 30vw;
+  border: 1px solid black;
+  position:fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: bisque;
+  border-radius: 2.5%;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+}
+
+.modalButtonContainer{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 5%;
+  margin-top: 1%;
+  justify-content: end;
+}
+
+.modalButton{
+  height:2.5%;
+  width:2.5%;
+  min-width:30px;
+  margin-right:0.5%;
 }

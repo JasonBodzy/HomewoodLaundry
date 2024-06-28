@@ -30,9 +30,10 @@ interface LoaderData {
 
 interface MachineDetailProps {
   machine: Machine;
+  onButtonPress: any;
 }
 
-export default function MachineDetail({machine} : MachineDetailProps) {
+export default function MachineDetail({machine, onButtonPress} : MachineDetailProps) {
   // const fetcher = useFetcher();
   
 
@@ -43,7 +44,7 @@ export default function MachineDetail({machine} : MachineDetailProps) {
       {machine.machine_type === Machine_Type.washer ? <Washer /> : <Dryer />}
       <p>Status: {machine.machine_status === Machine_Status.in_use ? 'In Use' : 'Available'}</p>
       {/* {machine.machine_status === Machine_Status.available ? <Timer intialTime={0} /> : null} */}
-      <button className={styles.machineCardButton}>{machine.machine_status === Machine_Status.available ? 'start' : 'end'}</button>
+      <button onClick={onButtonPress} className={styles.machineCardButton}>{machine.machine_status === Machine_Status.available ? 'start' : 'end'}</button>
     </div>
 
   );

@@ -1,24 +1,22 @@
-import type { LoaderFunction, MetaFunction } from '@remix-run/node';
-import { json } from '@remix-run/node';
-import { useLoaderData, Link } from '@remix-run/react';
-import Modal from 'react-modal';
-import Machine from '../components/machine'
-import Machine_Type from '../components/type'
-import Machine_Status from '../components/status';
-import MachineDetail from './machines/$machineId';
-import styles from '../styles/index.module.css';
-import { useState } from 'react';
-
+import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+// import { json } from '@remix-run/node';
+// import { useLoaderData, Link } from '@remix-run/react';
+import Modal from "react-modal";
+import Machine from "../components/machine";
+import Machine_Type from "../components/type";
+import Machine_Status from "../components/status";
+import MachineDetail from "./machines/$machineId";
+import styles from "../styles/index.module.css";
+import { useState } from "react";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 
 
 export const meta: MetaFunction = () => {
   return [
-    { title: 'Homewood Laundry Status' },
-    { name: 'description', content: 'Welcome to Remix!' },
+    { title: "Homewood Laundry Status" },
+    { name: "description", content: "Welcome to Remix!" },
   ];
 };
-
-
 
 interface LoaderData {
   machines: Machine[];
@@ -38,18 +36,51 @@ interface LoaderData {
 export default function Index() {
   // const { machines } = useLoaderData<LoaderData>();
   const machines: Machine[] = [
-    { key: 1, name: 'Washer 1', machine_type: Machine_Type.washer, machine_status: Machine_Status.available, end_time: new Date(), phone_number: '' },
-    { key: 2, name: 'Washer 2', machine_type: Machine_Type.washer, machine_status: Machine_Status.available, end_time: new Date(), phone_number: '' },
-    { key: 3, name: 'Dryer 1', machine_type: Machine_Type.dryer, machine_status: Machine_Status.available, end_time: new Date(), phone_number: '' },
-    { key: 4, name: 'Dryer 2', machine_type: Machine_Type.dryer, machine_status: Machine_Status.available, end_time: new Date(), phone_number: '' },
+    {
+      key: 1,
+      name: "Washer 1",
+      machine_type: Machine_Type.washer,
+      machine_status: Machine_Status.available,
+      end_time: new Date(),
+      phone_number: "",
+    },
+    {
+      key: 2,
+      name: "Washer 2",
+      machine_type: Machine_Type.washer,
+      machine_status: Machine_Status.available,
+      end_time: new Date(),
+      phone_number: "",
+    },
+    {
+      key: 3,
+      name: "Dryer 1",
+      machine_type: Machine_Type.dryer,
+      machine_status: Machine_Status.available,
+      end_time: new Date(),
+      phone_number: "",
+    },
+    {
+      key: 4,
+      name: "Dryer 2",
+      machine_type: Machine_Type.dryer,
+      machine_status: Machine_Status.available,
+      end_time: new Date(),
+      phone_number: "",
+    },
   ];
 
-  const [modalVisible, setModalVisible] = useState(false)
+  const [modalVisible, setModalVisible] = useState(false);
   const [selectedMachine, setSelectedMachine] = useState(0);
 
   const buttonPress = (machineKey: number) => {
-    setModalVisible(prevState => !prevState);
+    console.log('PRESSED')
+    setModalVisible((prevState) => !prevState);
     setSelectedMachine(machineKey);
+  };
+
+  const modalClose = () => {
+    setModalVisible(false);
   };
 
   return (
@@ -59,14 +90,23 @@ export default function Index() {
       </div>
       <div className={styles.machineGrid}>
         {machines.map((machine) => (
-            <MachineDetail machine={machine} />
+          <MachineDetail machine={machine} onButtonPress={buttonPress} />
         ))}
       </div>
-      <Modal isOpen={false}>
-        <p>Enter your phone number for notifications:</p>
-        <input type="text" value={"Phone Number"}>
-        </input>
+      <Modal
+        isOpen={modalVisible}
+        onAfterClose={modalClose}
+        onRequestClose={modalClose}
+        className={styles.modal}
+        style={
+          { overlay: {backgroundColor: 'rgba(0, 0, 0, 0.55)'}}}
+      >
 
+        <div className={styles.modalButtonContainer}>
+          <IoIosCloseCircleOutline className={styles.modalButton} onClick={modalClose}/>
+        </div>
+        <p>Enter your phone number for notifications:</p>
+        <input type="text" defaultValue={"Phone Number"}></input>
       </Modal>
     </div>
   );
