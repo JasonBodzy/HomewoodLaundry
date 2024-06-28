@@ -1,0 +1,15 @@
+.machineCard{
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  align-items: center;
+  border: 1.5px solid black;
+  border-radius: 15%;
+  font-weight: 400;
+}
+
+.machineCardButton { 
+  margin-bottom: 10%;
+  min-width: 50%;
+  min-height: 10%;
+}
