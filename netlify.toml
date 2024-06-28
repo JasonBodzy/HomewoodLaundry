@@ -3,7 +3,7 @@ command = "npm run build"
 publish = "build/server"
 
 [dev]
-command = "npm start"
+command = "npm run dev"
 framework = "vite"
 
 [[redirects]]
